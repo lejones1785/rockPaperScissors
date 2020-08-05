@@ -1,0 +1,93 @@
+<script>
+let playerScore = 0;
+let computerScore = 0;
+
+function playGame() {
+
+for (let roundsPlayed = 0; roundsPlayed < 5; roundsPlayed++) {
+ 
+//Get the computers play
+function computerPlay() {
+
+          let compChoice = Math.random();
+
+          if (0 < compChoice < 0.33) {
+            return "rock";
+          } else if (0.34 < compChoice < 0.66) {
+            return "paper";
+          } else {
+            return "scissors";
+          }
+}
+
+let computerSelection = computerPlay();
+
+//Correct the players option in order to compare
+
+function userChoice() {
+        let userChoice = prompt("Do you chose rock, paper, or scissors? Please choose five times!");
+        
+        userChoice = userChoice.toLowerCase();
+
+        if (userChoice == "rock" || userChoice == "paper" || userChoice == "scissors") {
+            return userChoice
+        } else {
+            alert("Not a valid choice");
+        }
+}
+
+let playerSelection = userChoice(); 
+
+//get the winner of the round
+ function playRound(playerSelection, computerSelection) {
+          if (playerSelection === computerSelection) {
+              return "Tie! Next Round!";
+        } else if (playerSelection === "rock" && computerSelection === "paper") {
+          computerScore++;
+          return "Paper covers rock. You lose.";
+        } else if (playerSelection === "paper" && computerSelection === "scissors") {
+          computerScore++;
+          return "Scissor cuts paper. You lose.";
+        } else if (playerSelection === "scissors" && computerSelection === "rock") {
+          computerScore++;
+          return "Rock smashes scissors. You lose.";
+        } else if (playerSelection === "rock" && computerSelection === "scissors") {
+          playerScore++;
+          return "Rock smashes scissors. You win!";
+        } else if (playerSelection === "paper" && computerSelection === "rock") {
+          playerScore++;
+          return "Paper covers rock. You win!";
+        } else if (playerSelection === "scissors" && computerSelection === "paper") {
+          playerScore++;
+          return "Scissor cuts paper. You win!";
+        }
+}
+playRound();
+        
+console.log(playerSelection);
+console.log(computerSelection);
+
+let result = playRound(playerSelection, computerSelection);
+console.log(result);
+
+const score = "Player Score: " + playerScore + " CPU Score: " + computerScore;
+console.log(score);
+}
+  
+const lastScore = function compare() {
+	if (playerScore > computerScore) {
+		return "You have won the game!"
+	} else if (playerScore < computerScore) {
+		return "You have lost the game. Try again!"
+	} else {
+		return "The game is a tie!"
+	}
+ }
+let finalScore = lastScore();
+console.log (finalScore)
+}
+
+playGame();
+</script>
+
+
